@@ -95,10 +95,10 @@ const CreatePost = () => {
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField 
-          labelName="YourName"
+          labelName="Your Name"
           type="text"
           name="name"
-          placeholder="John Doe" 
+          placeholder="Name Here" 
           value={form.name} 
           handleChange={handleChange}
           />
@@ -155,7 +155,7 @@ const CreatePost = () => {
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {loading ? 'Sharing...' : 'Share with the community'}
+            {loading ? 'Sharing...' : 'Share'}
           </button>
         </div>
       </form>
