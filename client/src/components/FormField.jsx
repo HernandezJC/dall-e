@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const FormField = ({ labelName, type, name, placeholder, value, handleChange, isSurpriseMe, 
-  handleSurpriseMe }) => {
+const FormField = ({ labelName, type, name, placeholder, value, handleChange, isSurpriseMe, handleSurpriseMe }) => {
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
@@ -33,4 +32,4 @@ const FormField = ({ labelName, type, name, placeholder, value, handleChange, is
   )
 }
 
-export default FormField
+export default FormField;

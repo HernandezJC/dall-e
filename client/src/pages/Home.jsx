@@ -6,13 +6,15 @@ import { Loader, Card, FormField } from '../components';
 // Render cards function
 const RenderCards = ({ data, title }) => {
     if(data?.length > 0) {
-        return data.map((post) => <Card key={post._id} {...post} />)
+        return (
+            data.map((post) => <Card key={post._id} {...post} />)
+        );
     }
 
     return (
         <h2 className="mt-5 font-bold text-[#6449ff] text-xl uppercase">{title}</h2>
-    )
-}
+    );
+};
 
 // Home Page
 const Home = () => {
@@ -20,8 +22,8 @@ const Home = () => {
     const[allPosts, setAllPosts] = useState(null);
 
     const [searchText, setSearchText] = useState('');
-    const [searchedResults, setsearchedResults] = useState(null);
-    const [searchTimeout, setsearchTimeout] = useState(null);
+    const [searchedResults, setSearchedResults] = useState(null);
+    const [searchTimeout, setSearchTimeout] = useState(null);
 
 
     useEffect(() => {
@@ -30,7 +32,7 @@ const Home = () => {
             setLoading(true);
 
             try {
-                const response = await fetch('http;//localhost:8080/api/v1/post', {
+                const response = await fetch('https://dall-e-9igb.onrender.com/api/v1/post', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

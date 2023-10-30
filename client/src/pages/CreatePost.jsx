@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import{ useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
 
+// Create page
 // Create post
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -18,18 +19,28 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  };
+
+  // Surpise me prompt
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt })
+  };
+
   // Functions for generating image, submit, change, surprise me
   const generateImage = async () => {
     if(form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        const response = await fetch('https://dall-e-9igb.onrender.com/api/v1/dalle', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ prompt: form.prompt }),
-        })
+        });
 
         const data = await response.json();
 
@@ -42,7 +53,7 @@ const CreatePost = () => {
     } else {
       alert('Please enter a prompt')
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,16 +62,17 @@ const CreatePost = () => {
       setLoading(true);
 
       try {
-        const response = await fetch('http://localhost:8080/api/v1/post', {
+        const response = await fetch('https://dall-e-9igb.onrender.com/api/v1/post', {
           method: 'POST',
           headers: {
             'Content-Type' : 'application/json',
           },
           // getting body from postRoutes.js from server
-          body: JSON.stringify(form)
-        })
+          body: JSON.stringify({ ...form }),
+        });
 
         await response.json();
+        alert('Success')
         navigate('/');
       } catch (err) {
         alert(err)
@@ -70,16 +82,8 @@ const CreatePost = () => {
     } else {
       alert('Please enter a prompt and generate an image')
     }
-  }
+  };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const handleSurpriseMe = () => {
-    const randomPrompt = getRandomPrompt(form.prompt);
-    setForm({ ...form, prompt: randomPrompt })
-  }
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -98,6 +102,7 @@ const CreatePost = () => {
           value={form.name} 
           handleChange={handleChange}
           />
+
           <FormField 
           labelName="Prompt"
           type="text"
@@ -130,13 +135,13 @@ const CreatePost = () => {
                 <Loader />
               </div>
             )}
-            
           </div>
         </div>
 
         <div className="mt-5 flex gap-5">
+          {/* Generate button */}
           <button 
-          type='button'
+          type="button"
           onClick={generateImage}
           className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
@@ -155,7 +160,7 @@ const CreatePost = () => {
         </div>
       </form>
     </section>
-  )
-}
+  );
+};
 
 export default CreatePost;

@@ -21,7 +21,7 @@ app.use('/api/v1/dalle', dalleRoutes);
 // Route
 app.get('/', async (req, res) => {
     res.send('Hello from DALL-E!');
-})
+});
 
 // Start server & mongoDB connection
 const startServer = async () => {
@@ -31,6 +31,6 @@ const startServer = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 startServer();
