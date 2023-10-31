@@ -5,6 +5,7 @@ import { downloadImage } from '../utils';
 
 // Image / card function w/ paramaters
 const Card = ({_id, name, prompt, photo }) => {
+  console.log('Card.jsx line:8')
   return (
     <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
       <img 

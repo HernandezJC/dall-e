@@ -6,6 +6,7 @@ import { Loader, Card, FormField } from '../components';
 // Render cards function
 const RenderCards = ({ data, title }) => {
     if(data?.length > 0) {
+        console.log('Home.jsx, line:11')
         return (
             data.map((post) => <Card key={post._id} {...post} />)
         );
@@ -37,7 +38,7 @@ const Home = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                })
+                });
 
                 if(response.ok) {
                     const result = await response.json();
