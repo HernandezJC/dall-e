@@ -50,4 +50,5 @@ Oustanding buggs:
     at ModuleJob.run (node:internal/modules/esm/module_job:192:25) -->
 
 Project Citation:
-- Inspired by: https://github.com/adrianhajdin/project_ai_mern_image_generation.git
+- Inspired by: https://www.youtube.com/watch?v=tllZWCQZ9_0&t=15817s
+- https://github.com/adrianhajdin/project_ai_mern_image_generation.git
